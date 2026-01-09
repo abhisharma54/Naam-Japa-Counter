@@ -1,0 +1,153 @@
+@import url("https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Anton+SC&family=Audiowide&family=BBH+Bartle&family=Bebas+Neue&family=Caveat:wght@400..700&family=Comfortaa:wght@300..700&family=Fjalla+One&family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Lexend:wght@100..900&family=Lilita+One&family=Pacifico&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Unbounded:wght@200..900&display=swap");
+@import "tailwindcss";
+
+:root {
+  --tabRadius: 24px;
+  --boxRadius: 12px;
+  --tabGradient: linear-gradient(to top, #e4e4e7, #e4e4e76d);
+}
+
+html {
+  background-color: #5a89f5;
+}
+
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  text-align: center;
+  font-family: "Poppins", sans-serif;
+}
+
+.logo {
+  font-family: "Unbounded", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+  font-size: 1.5em;
+  color: white;
+  font-family: "Unbounded", sans-serif;
+  font-optical-sizing: auto;
+}
+
+.tab-gradient {
+  width: 100%;
+  height: 50px;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  background-color: #e4e4e7;
+  background: linear-gradient(to top, #9bc8ff, #9bc8ff, #bad6ff5d, #e4e4e70d);
+}
+
+.mesh-gradientBox1 {
+  position: absolute;
+  top: -180px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 300px;
+  height: 300px;
+  border-radius: 200px;
+  background: linear-gradient(to right, #004cff, #b7bdfe);
+  z-index: 0;
+  animation: bubble 50s infinite;
+}
+
+.mesh-gradientBox2 {
+  position: absolute;
+  bottom: -420px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  background: linear-gradient(to right, #3c00ff, #b7bdfe);
+  z-index: 0;
+  animation: bubble 50s infinite;
+}
+
+@keyframes bubble {
+  0% {
+    scale: 1;
+  }
+  50% {
+    scale: 1.1;
+  }
+  100% {
+    scale: 1;
+  }
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+body,
+.box {
+  background: radial-gradient(
+      circle at 100% -100%,
+      rgb(0, 247, 255),
+      rgba(255, 255, 255, 0) 60%
+    ),
+    radial-gradient(
+      circle at 100% 100%,
+      rgba(38, 0, 255, 0.6),
+      rgba(100, 160, 255, 0) 60%
+    ),
+    radial-gradient(
+      circle at 20% 15%,
+      rgba(25, 90, 255, 0.7),
+      rgba(25, 90, 255, 0) 50%
+    ),
+    radial-gradient(
+      circle at -100% 100%,
+      rgb(0, 247, 255),
+      rgba(255, 255, 255, 0) 60%
+    ),
+    linear-gradient(135deg, #6490ff, #dce8ff 60%, #ffffff 100%);
+  background-size: cover;
+}
+.box {
+  filter: blur(100px);
+  animation: spin 20s infinite;
+}
+
+@keyframes spin {
+  0% {
+    rotate: 0;
+  }
+  50% {
+    rotate: 180;
+    scale: 2;
+  }
+  100% {
+    rotate: 360;
+  }
+}
+
+.glassCard {
+  overflow: hidden;
+  border-radius: inherit;
+  transition: all 100ms ease-out;
+  border-radius: 28px;
+  backdrop-filter: brightness(1.1) blur(2px);
+}
+
+.glassCard::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  border-radius: 28px;
+  -webkit-box-shadow: inset 2px 2px 0px -2px rgba(255, 255, 255, 0.7),
+    inset 0 0 3px 1px rgba(255, 255, 255, 0.7);
+  box-shadow: inset 6px 6px 0px -6px rgba(255, 255, 255, 0.7),
+    inset 0 0 8px 1px rgba(255, 255, 255, 0.7);
+}
+
+.dateTab {
+  background: linear-gradient(
+    to right,
+    rgba(25, 90, 255),
+    rgba(136, 25, 255, 0.7)
+  );
+}
