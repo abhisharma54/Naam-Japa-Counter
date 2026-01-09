@@ -49,8 +49,8 @@ function DataTab() {
         </div>
         <button onClick={() => setIsOpenTab(!isOpenTab)}>
           <img
-            className={`w-[35px] h-[35px] -rotate-180 transition duration-100 ease-in hover:scale-105 cursor-pointer ${
-              isOpenTab && "rotate-0"
+            className={`w-[35px] h-[35px] transition duration-100 ease-in hover:scale-105 cursor-pointer ${
+              isOpenTab ? "rotate-0" : "-rotate-180"
             }`}
             src={downArrowIcon}
             alt="down arrow icon"
