@@ -44,7 +44,7 @@ function App() {
   }, [data]);
 
   return (
-    <div className="w-full flex flex-col py-8 gap-8 relative min-h-screen h-full px-8 overflow-hidden">
+    <div className="w-full flex flex-col px-4 py-8 gap-8 relative min-h-screen h-full sm:px-8 overflow-hidden">
       <div className="absolute inset-0 box"></div>
       <div className="mesh-gradientBox1"></div>
       <div className="mesh-gradientBox2"></div>
