@@ -47,7 +47,7 @@ function DataTab() {
         <div className="glassCard dateTab px-5 flex items-center text-sm tracking-wider bg-blue-600 text-white rounded-lg">
           <p>{data.lastActiveDate.split("-").reverse().join("-")}</p>
         </div>
-        <button onClick={() => setIsOpenTab(!isOpenTab)}>
+        <button className="z-50" onClick={() => setIsOpenTab(!isOpenTab)}>
           <img
             className={`w-[35px] h-[35px] transition duration-100 ease-in hover:scale-105 cursor-pointer ${
               isOpenTab ? "rotate-0" : "-rotate-180"
@@ -58,7 +58,7 @@ function DataTab() {
         </button>
       </div>
       <div className="flex flex-col gap-4 ">
-        {naamData.map(({ id, name, imgSrc, imgAlt, data }) => (
+        {naamData.map(({ id, name, imgSrc, imgAlt, data }, i) => (
           <div
             key={id}
             className="glassCard flex sm:flex-row flex-col px-6 py-2.5 bg-blue-300 rounded-[var(--boxRadius)] items-center justify-between"
@@ -67,12 +67,14 @@ function DataTab() {
               <p className="text-lg text-nowrap sm:text-xl text-blue-900 font-semibold">
                 {name}
               </p>
-              <img
-                className="w-[25px] h-[25px] rotate-30"
-                src={imgSrc}
-                alt={imgAlt}
-                loading="lazy"
-              />
+              {i % 2 == 0 && (
+                <img
+                  className="w-[28px] h-[28px] rotate-0"
+                  src={imgSrc}
+                  alt={imgAlt}
+                  loading="lazy"
+                />
+              )}
             </div>
             <div>
               <p className="text-xl font-medium text-white">{data}</p>

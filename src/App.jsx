@@ -36,6 +36,7 @@ function App() {
         todayMaala: 0,
         todayNaamJapa: 0,
         lastActiveDate: getTodayDate,
+        naam: 0,
       };
       setData(updateData);
       localStorage.setItem("naamJapaData", JSON.stringify(updateData));

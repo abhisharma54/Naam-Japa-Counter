@@ -11,6 +11,10 @@ html {
   background-color: #5a89f5;
 }
 
+::-webkit-scrollbar {
+  display: none;
+}
+
 #root {
   max-width: 1280px;
   margin: 0 auto;
@@ -27,6 +31,7 @@ html {
   font-optical-sizing: auto;
 }
 
+/* Data tab minimum size css */
 .tab-gradient {
   width: 100%;
   height: 50px;
@@ -37,6 +42,7 @@ html {
   background: linear-gradient(to top, #9bc8ff, #9bc8ff, #bad6ff5d, #e4e4e70d);
 }
 
+/* Floating design */
 .mesh-gradientBox1 {
   position: absolute;
   top: -180px;
@@ -75,10 +81,7 @@ html {
   }
 }
 
-::-webkit-scrollbar {
-  display: none;
-}
-
+/* Overall webpage gradient color css */
 body,
 .box {
   background: radial-gradient(
@@ -122,6 +125,7 @@ body,
   }
 }
 
+/* Glass morphism effect css */
 .glassCard {
   overflow: hidden;
   border-radius: inherit;
@@ -143,10 +147,34 @@ body,
     inset 0 0 8px 1px rgba(255, 255, 255, 0.7);
 }
 
+/* Date tab css */
 .dateTab {
-  background: linear-gradient(
-    to right,
-    rgba(25, 90, 255),
-    rgba(136, 25, 255, 0.7)
-  );
+  background: linear-gradient(to right, #195aff, #8819ffb3);
+}
+
+/* Circular progress bar css  */
+.outer-progress-wrapper {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  padding: 30px;
+  box-shadow: 6px 6px 10px -1px rgba(0, 0, 0, 0.15),
+    -6px -6px 10px -1px rgba(255, 255, 255, 0.7);
+}
+
+.inner-progress-wrapper {
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  box-shadow: inset 4px 4px 6px -1px rgba(0, 0, 0, 0.2),
+    inset -4px -4px 6px -1px rgba(255, 255, 255, 0.7),
+    -0.5px -0.5px 0px rgba(255, 255, 255, 1),
+    0.5px 0.5px 0px rgba(0, 0, 0, 0.15), 0px 12px 10px -10px rgba(0, 0, 0, 0.05);
+}
+
+svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  rotate: -85deg;
 }
