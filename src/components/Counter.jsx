@@ -25,6 +25,7 @@ function Counter() {
           version="1.1"
           width="280px"
           height="280px"
+          className="absolute top-0 left-0 -rotate-[85deg]"
         >
           <defs>
             <linearGradient id="GradientColor">
@@ -34,7 +35,8 @@ function Counter() {
           </defs>
           <circle
             style={{
-              transition: "stroke-dashoffset 0.6s ease",
+              transition:
+                "stroke-dashoffset 0.6s cubic-bezier( 0.17, 0.89, 0.32, 1.27 )",
             }}
             cx="140"
             cy="140"
