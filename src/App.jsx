@@ -56,7 +56,7 @@ function App() {
         <Counter />
         <button
           onClick={handleData}
-          className="glassCard px-10 py-2 bg-purple-600 text-xl font-semibold text-white rounded-full transition duration-75 ease-out hover:bg-purple-700 hover:scale-105 cursor-pointer"
+          className="glassCard px-10 py-2 bg-purple-600 text-xl font-semibold text-white rounded-full transition duration-75 ease-out hover:bg-purple-700 hover:[box-shadow:0_0_30px_2px_#8819ffb3] hover:scale-105 active:translate-y-0.5 cursor-pointer"
         >
           राधा राधा
         </button>
