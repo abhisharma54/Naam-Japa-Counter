@@ -3,8 +3,8 @@ import { flowerIcon, downArrowIcon, naamIcon } from "../assets/index";
 import useNaamContext from "../context/naamContext";
 
 const STATS = [
-  { field: "totalMaala", label: "Total Maala", icon: flowerIcon },
-  { field: "todayMaala", label: "Today's Maala" },
+  { field: "totalMaala", label: "Total Mala", icon: flowerIcon },
+  { field: "todayMaala", label: "Today's Mala" },
   { field: "totalNaamJapa", label: "Total Naam Japa", icon: naamIcon },
   { field: "todayNaamJapa", label: "Today's Naam Japa" },
 ];

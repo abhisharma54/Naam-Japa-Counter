@@ -10,10 +10,10 @@ A simple, calming web app to count your daily **Radha Naam japa** and track your
 ## ✨ Features
  
 - **108-bead counter**: a circular counter that tracks each japa from 0 to 108
-- **Maala tracking**: every completed round of 108 adds one maala
+- **Mala tracking**: every completed round of 108 adds one mala
 - **Daily and lifetime stats**
-  - Total Maala
-  - Today's Maala
+  - Total Mala
+  - Today's Mala
   - Total Naam Japa
   - Today's Naam Japa
 - **Mantra display**: the mantra is shown on screen while you chant

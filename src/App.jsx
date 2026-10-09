@@ -1,7 +1,7 @@
 import { useCallback, useEffect } from "react";
 import { Counter, DataTab, Navbar, MantraCard } from "./components/index";
 import useNaamContext from "./context/naamContext";
-import { BEADS_PER_MAALA, STORAGE_KEY } from './context/naamConstants'
+import { BEADS_PER_MALA, STORAGE_KEY } from './context/naamConstants'
 
 const getLocalDate = () => new Date().toLocaleDateString("en-CA");
 
@@ -10,7 +10,7 @@ function App() {
 
   const handleData = useCallback(() => {
     setData((prev) => {
-      const completed = prev.naam + 1 === BEADS_PER_MAALA;
+      const completed = prev.naam + 1 === BEADS_PER_MALA;
       return {
         ...prev,
         naam: completed ? 0 : prev.naam + 1,
@@ -21,8 +21,8 @@ function App() {
       };
     });
  
-    // Light tap feedback, longer pattern when a maala completes
-    navigator.vibrate?.(data.naam + 1 === BEADS_PER_MAALA ? [100, 50, 100] : 10);
+    // Light tap feedback, longer pattern when a mala completes
+    navigator.vibrate?.(data.naam + 1 === BEADS_PER_MALA ? [100, 50, 100] : 10);
   }, [setData, data.naam]);
 
   useEffect(() => {
