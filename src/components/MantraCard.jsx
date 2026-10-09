@@ -2,7 +2,7 @@ import React from "react";
 
 function MantraCard() {
   return (
-    <div className="glassCard w-full px-4 py-4 text-white bg-blue-500 sm:w-[500px]">
+    <div className="glassCard w-full px-4 py-4 text-white bg-blue-500 sm:w-125">
       <div>
         <p className="text-md sm:text-xl font-semibold tracking-wide">
           कृष्णाय वासुदेवाय हरये परमात्मने ।

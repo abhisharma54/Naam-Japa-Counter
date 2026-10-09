@@ -1,5 +1,5 @@
 import React from "react";
-import useNaamContext from "../context/NaamProvider";
+import useNaamContext from "../context/naamContext";
 
 const RADIUS = 125;
 const CIRCUMFERENCE = 2 * Math.PI * RADIUS;
@@ -8,7 +8,7 @@ function Counter() {
   const { data } = useNaamContext();
 
   return (
-    <div className="w-full flex justify-center sm:w-[500px]">
+    <section className="w-full flex justify-center sm:w-125">
       <div className="progress-wrapper relative ">
         <div className="outer-progress-wrapper">
           <div className="inner-progress-wrapper flex justify-center items-center">
@@ -25,12 +25,12 @@ function Counter() {
           version="1.1"
           width="280px"
           height="280px"
-          className="absolute top-0 left-0 -rotate-[85deg]"
+          className="absolute top-0 left-0 -rotate-85"
         >
           <defs>
             <linearGradient id="GradientColor">
-              <stop offset="0%" stop-color="#8819ffb3" />
-              <stop offset="100%" stop-color="#195aff " />
+              <stop offset="0%" stopColor="#8819ffb3" />
+              <stop offset="100%" stopColor="#195aff " />
             </linearGradient>
           </defs>
           <circle
@@ -43,14 +43,14 @@ function Counter() {
             r={RADIUS}
             fill="none"
             stroke="url(#GradientColor)"
-            stroke-linecap="round"
+            strokeLinecap="round"
             strokeDasharray={CIRCUMFERENCE}
             strokeWidth="30px"
             strokeDashoffset={CIRCUMFERENCE - (CIRCUMFERENCE * data.naam) / 108}
           />
         </svg>
       </div>
-    </div>
+    </section>
   );
 }
 

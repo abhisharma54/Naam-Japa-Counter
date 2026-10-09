@@ -1,56 +1,64 @@
-import { useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect } from "react";
 import { Counter, DataTab, Navbar, MantraCard } from "./components/index";
-import useNaamContext from "./context/NaamProvider";
+import useNaamContext from "./context/naamContext";
+import { BEADS_PER_MAALA, STORAGE_KEY } from './context/naamConstants'
+
+const getLocalDate = () => new Date().toLocaleDateString("en-CA");
 
 function App() {
   const { data, setData } = useNaamContext();
 
-  const getTodayDate = useMemo(() => {
-    return new Date().toISOString().split("T")[0];
-  }, []);
-
-  const handleData = () => {
-    if (data.naam == 107) {
-      setData((prev) => ({
+  const handleData = useCallback(() => {
+    setData((prev) => {
+      const completed = prev.naam + 1 === BEADS_PER_MAALA;
+      return {
         ...prev,
-        totalMaala: prev.totalMaala + 1,
-        todayMaala: prev.todayMaala + 1,
+        naam: completed ? 0 : prev.naam + 1,
         totalNaamJapa: prev.totalNaamJapa + 1,
         todayNaamJapa: prev.todayNaamJapa + 1,
-        naam: 0,
-      }));
-    } else {
-      setData((prev) => ({
-        ...prev,
-        totalNaamJapa: prev.totalNaamJapa + 1,
-        todayNaamJapa: prev.todayNaamJapa + 1,
-        naam: prev.naam + 1,
-      }));
-    }
-  };
+        totalMaala: prev.totalMaala + (completed ? 1 : 0),
+        todayMaala: prev.todayMaala + (completed ? 1 : 0),
+      };
+    });
+ 
+    // Light tap feedback, longer pattern when a maala completes
+    navigator.vibrate?.(data.naam + 1 === BEADS_PER_MAALA ? [100, 50, 100] : 10);
+  }, [setData, data.naam]);
 
   useEffect(() => {
-    if (data.lastActiveDate !== getTodayDate) {
-      const updateData = {
-        ...data,
-        todayMaala: 0,
-        todayNaamJapa: 0,
-        lastActiveDate: getTodayDate,
-        naam: 0,
-      };
-      setData(updateData);
-      localStorage.setItem("naamJapaData", JSON.stringify(updateData));
+    const rollOverIfNewDay = () => {
+      const today = getLocalDate();
+      setData((prev) =>
+        prev.lastActiveDate === today
+          ? prev // same object = no re-render
+          : { ...prev, todayMaala: 0, todayNaamJapa: 0, lastActiveDate: today }
+      );
+    };
+ 
+    rollOverIfNewDay();
+    document.addEventListener("visibilitychange", rollOverIfNewDay);
+    return () =>
+      document.removeEventListener("visibilitychange", rollOverIfNewDay);
+  }, [setData]);
+ 
+  useEffect(() => {
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+    } catch {
+      // storage full or blocked (private mode), app still works in memory
     }
-    localStorage.setItem("naamJapaData", JSON.stringify(data));
   }, [data]);
 
   return (
-    <div className="w-full flex flex-col px-4 py-8 gap-8 relative min-h-screen h-full sm:px-8 overflow-hidden">
-      <div className="absolute inset-0 box"></div>
-      <div className="mesh-gradientBox1"></div>
-      <div className="mesh-gradientBox2"></div>
+    <div className="w-full flex flex-col px-4 py-8 gap-8 relative min-h-dvh sm:px-8 overflow-hidden">
+      {/* Decorative background, hidden from screen readers and not clickable */}
+      <div className="absolute inset-0 box pointer-events-none" aria-hidden="true" />
+      <div className="mesh-gradientBox1 pointer-events-none" aria-hidden="true" />
+      <div className="mesh-gradientBox2 pointer-events-none" aria-hidden="true" />
+
       <Navbar />
-      <section className="glassCard min-h-[80vh] py-8 px-8 flex flex-col items-center gap-10">
+
+      <main className="glassCard min-h-[80vh] py-8 px-8 flex flex-col items-center gap-10">
         <MantraCard />
         <DataTab />
         <Counter />
@@ -60,7 +68,7 @@ function App() {
         >
           राधा राधा
         </button>
-      </section>
+      </main>
     </div>
   );
 }
