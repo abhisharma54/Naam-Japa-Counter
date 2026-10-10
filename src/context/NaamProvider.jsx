@@ -3,7 +3,7 @@ import { NaamContext } from "./naamContext";
 import {
   STORAGE_KEY,
   DEFAULT_DATA,
-  BEADS_PER_MALA,
+  BEADS_PER_MAALA,
 } from "./naamConstants";
  
 // Accept only valid non-negative whole numbers, otherwise use the default
@@ -24,7 +24,8 @@ const loadData = () => {
       todayNaamJapa: toCount(saved.todayNaamJapa, 0),
       lastActiveDate:
         typeof saved.lastActiveDate === "string" ? saved.lastActiveDate : "",
-      naam: naam < BEADS_PER_MALA ? naam : 0,
+      naam: naam < BEADS_PER_MAALA ? naam : 0,
+      chantName: saved.chantName ?? "Radha Radha"
     };
   } catch {
     return DEFAULT_DATA;

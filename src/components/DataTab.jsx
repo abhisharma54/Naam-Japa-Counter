@@ -53,7 +53,7 @@ function DataTab() {
             className="glassCard flex sm:flex-row flex-col px-6 py-2.5 bg-blue-300 rounded-(--boxRadius) items-center justify-between"
           >
             <div className="flex items-center gap-2">
-              <p className="text-lg text-nowrap sm:text-xl text-blue-900 font-semibold">
+              <p className="text-lg text-nowrap text-blue-900 font-semibold">
                 {label}
               </p>
               {icon && (

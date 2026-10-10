@@ -1,7 +1,7 @@
 import { useCallback, useEffect } from "react";
-import { Counter, DataTab, Navbar, MantraCard } from "./components/index";
+import { Counter, DataTab, Navbar, MantraCard, ChantUpdateCard } from "./components/index";
 import useNaamContext from "./context/naamContext";
-import { BEADS_PER_MALA, STORAGE_KEY } from './context/naamConstants'
+import { BEADS_PER_MAALA, STORAGE_KEY } from './context/naamConstants';
 
 const getLocalDate = () => new Date().toLocaleDateString("en-CA");
 
@@ -10,7 +10,7 @@ function App() {
 
   const handleData = useCallback(() => {
     setData((prev) => {
-      const completed = prev.naam + 1 === BEADS_PER_MALA;
+      const completed = prev.naam + 1 === BEADS_PER_MAALA;
       return {
         ...prev,
         naam: completed ? 0 : prev.naam + 1,
@@ -22,7 +22,7 @@ function App() {
     });
  
     // Light tap feedback, longer pattern when a mala completes
-    navigator.vibrate?.(data.naam + 1 === BEADS_PER_MALA ? [100, 50, 100] : 10);
+    navigator.vibrate?.(data.naam + 1 === BEADS_PER_MAALA ? [100, 50, 100] : 10);
   }, [setData, data.naam]);
 
   useEffect(() => {
@@ -61,12 +61,13 @@ function App() {
       <main className="glassCard min-h-[80vh] py-8 px-8 flex flex-col items-center gap-10">
         <MantraCard />
         <DataTab />
+        <ChantUpdateCard />
         <Counter />
         <button
           onClick={handleData}
           className="glassCard px-10 py-2 bg-purple-600 text-xl font-semibold text-white rounded-full transition duration-75 ease-out hover:bg-purple-700 hover:[box-shadow:0_0_30px_2px_#8819ffb3] hover:scale-105 active:translate-y-0.5 cursor-pointer"
         >
-          राधा राधा
+          {data.chantName || "Radha Radha"}
         </button>
       </main>
     </div>

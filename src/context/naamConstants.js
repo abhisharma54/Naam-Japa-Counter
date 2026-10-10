@@ -1,5 +1,5 @@
 export const STORAGE_KEY = "naamJapaData";
-export const BEADS_PER_MALA = 108;
+export const BEADS_PER_MAALA = 108;
  
 export const DEFAULT_DATA = {
   totalMaala: 0,
@@ -8,4 +8,5 @@ export const DEFAULT_DATA = {
   todayNaamJapa: 0,
   lastActiveDate: "",
   naam: 0,
+  chantName: "Radha Radha"
 };
