@@ -42,46 +42,50 @@ function ChantUpdateCard() {
     setData((prev) => ({ ...prev, chantName: chant }));
     setSuccess("Chant renamed");
     setChant("");
-    setOpen(false)
+    setOpen(false);
 
     setTimeout(() => setSuccess(""), 2000);
   };
 
   return !open ? (
-    <div className="glassCard flex flex-col gap-5 p-6 bg-blue-300 rounded-(--boxRadius) sm:w-125">
+    <div className="glassCard w-full flex flex-col gap-5 p-6 bg-blue-300 rounded-(--boxRadius) sm:w-125">
       <div className="flex flex-col items-start">
-        <div className="w-full flex gap-4 items-center justify-between">
-          <h1 className="text-blue-900 text-xl font-semibold">
+        <div className="w-full flex items-center justify-between gap-2 sm:gap-4">
+          <h1 className="min-w-0 text-left text-base sm:text-xl font-semibold text-blue-900">
             Customize your chant
           </h1>
+
           <button
+            type="button"
             onClick={() => setOpen(true)}
-            className="glassCard px-4 py-1 text-white bg-blue-500 flex gap-2 items-center cursor-pointer hover:scale-110 active:scale-100"
+            className="glassCard flex shrink-0 items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-1 text-white bg-blue-500 cursor-pointer transition-transform hover:scale-105 active:scale-100"
           >
-            <p>Edit</p>
-            <FaRegEdit />
+            <span>Edit</span>
+            <FaRegEdit className="shrink-0" />
           </button>
         </div>
-        <p className="mt-3 text-blue-600 text-xs sm:text-sm">
+        <p className="text-blue-500 text-xs text-left sm:text-sm">
           Choose the name you chant. It appears on your counter button.
         </p>
       </div>
-      {success && <p className="glassCard px-5 py-2 text-sm tracking-wider bg-blue-500 text-white rounded-lg">{success || "Chant renamed"}</p>}
+      {success && (
+        <p className="glassCard px-5 py-2 text-sm tracking-wider bg-blue-500 text-white rounded-lg">
+          {success || "Chant renamed"}
+        </p>
+      )}
     </div>
   ) : (
     <div className="glassCard flex flex-col gap-5 p-6 bg-blue-300 rounded-(--boxRadius) sm:w-125">
       <div className="flex flex-col items-start">
         <div className="w-full flex gap-4 items-center justify-between">
-          <h1 className="text-blue-900 text-xl font-semibold">
+          <h1 className="text-blue-900 text-lg text-left font-semibold sm:text-xl">
             Customize your chant
           </h1>
-          <button
-            onClick={() => setOpen(false)}
-          >
+          <button onClick={() => setOpen(false)}>
             <IoIosCloseCircle className="glassCard text-3xl text-blue-500 cursor-pointer hover:scale-110 active:scale-100" />
           </button>
         </div>
-        <p className="mt-3 text-blue-600 text-xs text-justify sm:text-sm">
+        <p className="text-blue-500 text-xs text-left sm:text-sm">
           Choose the name you chant. It appears on your counter button.
         </p>
       </div>

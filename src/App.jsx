@@ -58,7 +58,7 @@ function App() {
 
       <Navbar />
 
-      <main className="glassCard min-h-[80vh] py-8 px-8 flex flex-col items-center gap-10">
+      <main className="glassCard min-h-[80vh] py-8 px-5 flex flex-col items-center gap-10 sm:px-8">
         <MantraCard />
         <DataTab />
         <ChantUpdateCard />
