@@ -39,7 +39,7 @@ function ChantUpdateCard() {
       return;
     }
 
-    setData((prev) => ({ ...prev, chantName: chant }));
+    setData((prev) => ({ ...prev, chant_name: chant }));
     setSuccess("Chant renamed");
     setChant("");
     setOpen(false);
@@ -64,13 +64,13 @@ function ChantUpdateCard() {
             <FaRegEdit className="shrink-0" />
           </button>
         </div>
-        <p className="text-blue-500 text-xs text-left sm:text-sm">
+        <p className="mt-1 text-white text-xs text-left sm:text-sm">
           Choose the name you chant. It appears on your counter button.
         </p>
       </div>
       {success && (
         <p className="glassCard px-5 py-2 text-sm tracking-wider bg-blue-500 text-white rounded-lg">
-          {success || "Chant renamed"}
+          {success}
         </p>
       )}
     </div>
@@ -85,14 +85,14 @@ function ChantUpdateCard() {
             <IoIosCloseCircle className="glassCard text-3xl text-blue-500 cursor-pointer hover:scale-110 active:scale-100" />
           </button>
         </div>
-        <p className="text-blue-500 text-xs text-left sm:text-sm">
+        <p className="mt-1 text-white text-xs text-left sm:text-sm">
           Choose the name you chant. It appears on your counter button.
         </p>
       </div>
       <div className="flex flex-col gap-1 items-start">
         <p className="text-blue-900 font-semibold">Current Chant</p>
         <p className="glassCard px-5 py-2 text-sm tracking-wider bg-blue-500 text-white rounded-lg">
-          {data.chantName || "Radha Radha"}
+          {data.chant_name || "Radha Radha"}
         </p>
       </div>
       <div className="flex flex-col gap-1 items-start">

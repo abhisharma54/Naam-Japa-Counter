@@ -6,7 +6,7 @@ export const DEFAULT_DATA = {
   todayMaala: 0,
   totalNaamJapa: 0,
   todayNaamJapa: 0,
-  lastActiveDate: "",
-  naam: 0,
-  chantName: "Radha Radha"
+  last_active_date: "",
+  naam_count: 0,
+  chant_name: "Radha Radha"
 };

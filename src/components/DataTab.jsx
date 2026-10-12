@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import { flowerIcon, downArrowIcon, naamIcon } from "../assets/index";
 import useNaamContext from "../context/naamContext";
+import { IoIosArrowDropdown } from "react-icons/io";
 
 const STATS = [
-  { field: "totalMaala", label: "Total Mala", icon: flowerIcon },
+  { field: "totalMaala", label: "Total Mala" },
   { field: "todayMaala", label: "Today's Mala" },
-  { field: "totalNaamJapa", label: "Total Naam Japa", icon: naamIcon },
+  { field: "totalNaamJapa", label: "Total Naam Japa" },
   { field: "todayNaamJapa", label: "Today's Naam Japa" },
 ];
 
@@ -26,50 +26,35 @@ function DataTab() {
     >
       <div className="flex justify-between pb-4">
         <time
-          dateTime={data.lastActiveDate}
+          dateTime={data.last_active_date}
           className="glassCard dateTab inline-flex items-center px-5 py-1 text-sm tracking-wider bg-blue-600 text-white rounded-lg"
         >
-          {formatDate(data.lastActiveDate)}
+          {formatDate(data.last_active_date)}
         </time>
         <button
           className="z-50"
           onClick={() => setIsOpen((open) => !open)}
           aria-expanded={isOpen}
         >
-          <img
-            className={`w-8.75 h-8.75 transition duration-100 ease-in hover:scale-105 cursor-pointer ${
+          <IoIosArrowDropdown
+            className={`text-3xl text-blue-900 transition duration-100 ease-in hover:scale-105 cursor-pointer ${
               isOpen ? "rotate-0" : "-rotate-180"
             }`}
-            src={downArrowIcon}
-            alt="down arrow icon"
-            loading="lazy"
           />
         </button>
       </div>
-      <div className="flex flex-col gap-4 ">
-        {STATS.map(({ field, label, icon }) => (
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 ">
+        {STATS.map(({ field, label }) => (
           <div
             key={field}
-            className="glassCard flex sm:flex-row flex-col px-6 py-2.5 bg-blue-300 rounded-(--boxRadius) items-center justify-between"
+            className="glassCard min-h-20 flex flex-col px-6 py-2.5 bg-blue-300 rounded-(--boxRadius) items-center justify-between"
           >
-            <div className="flex items-center gap-2">
-              <p className="text-lg text-nowrap text-blue-900 font-semibold">
+            <p className="text-lg text-nowrap text-blue-900 font-semibold">
                 {label}
               </p>
-              {icon && (
-                <img
-                  className="w-7 h-7 rotate-0"
-                  src={icon}
-                  alt=""
-                  loading="lazy"
-                />
-              )}
-            </div>
-            <div>
-              <p className="text-xl font-medium text-white">
+              <p className="text-2xl font-medium text-white">
                 {formatNumber(data[field])}
               </p>
-            </div>
           </div>
         ))}
         {isOpen && <div className="tab-gradient"></div>}

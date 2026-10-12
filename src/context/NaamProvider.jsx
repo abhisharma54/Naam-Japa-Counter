@@ -15,17 +15,17 @@ const loadData = () => {
     const saved = JSON.parse(localStorage.getItem(STORAGE_KEY));
     if (!saved || typeof saved !== "object") return DEFAULT_DATA;
  
-    const naam = toCount(saved.naam, 0);
+    const naam = toCount(saved.naam_count, 0);
  
     return {
       totalMaala: toCount(saved.totalMaala, 0),
       todayMaala: toCount(saved.todayMaala, 0),
       totalNaamJapa: toCount(saved.totalNaamJapa, 0),
       todayNaamJapa: toCount(saved.todayNaamJapa, 0),
-      lastActiveDate:
-        typeof saved.lastActiveDate === "string" ? saved.lastActiveDate : "",
-      naam: naam < BEADS_PER_MAALA ? naam : 0,
-      chantName: saved.chantName ?? "Radha Radha"
+      last_active_date:
+        typeof saved.last_active_date === "string" ? saved.last_active_date : "",
+      naam_count: naam < BEADS_PER_MAALA ? naam : 0,
+      chant_name: saved.chant_name ?? "Radha Radha"
     };
   } catch {
     return DEFAULT_DATA;
