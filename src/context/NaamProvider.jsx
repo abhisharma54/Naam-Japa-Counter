@@ -4,7 +4,7 @@ import {
   STORAGE_KEY,
   DEFAULT_DATA,
   BEADS_PER_MAALA,
-} from "./naamConstants";
+} from "../constant";
  
 // Accept only valid non-negative whole numbers, otherwise use the default
 const toCount = (value, fallback) =>
@@ -25,7 +25,7 @@ const loadData = () => {
       last_active_date:
         typeof saved.last_active_date === "string" ? saved.last_active_date : "",
       naam_count: naam < BEADS_PER_MAALA ? naam : 0,
-      chant_name: saved.chant_name ?? "Radha Radha"
+      chant_name: saved.chant_name ?? DEFAULT_DATA.chant_name
     };
   } catch {
     return DEFAULT_DATA;
