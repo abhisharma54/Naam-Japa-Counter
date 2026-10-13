@@ -31,11 +31,12 @@ function App() {
       setData((prev) =>
         prev.last_active_date === today
           ? prev // same object = no re-render
-          : { ...prev, todayMaala: 0, todayNaamJapa: 0, last_active_date: today }
+          : { ...prev, todayMaala: 0, todayNaamJapa: 0, naam_count: 0, last_active_date: today }
       );
     };
  
     rollOverIfNewDay();
+
     document.addEventListener("visibilitychange", rollOverIfNewDay);
     return () =>
       document.removeEventListener("visibilitychange", rollOverIfNewDay);
