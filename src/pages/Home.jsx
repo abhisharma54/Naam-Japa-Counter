@@ -22,10 +22,10 @@ function Home() {
       return {
         ...prev,
         naam_count: completed ? 0 : prev.naam_count + 1,
-        totalNaamJapa: prev.totalNaamJapa + 1,
-        todayNaamJapa: prev.todayNaamJapa + 1,
-        totalMaala: prev.totalMaala + (completed ? 1 : 0),
-        todayMaala: prev.todayMaala + (completed ? 1 : 0),
+        total_naam_japa: prev.total_naam_japa + 1,
+        today_naam_japa: prev.today_naam_japa + 1,
+        total_mala: prev.total_mala + (completed ? 1 : 0),
+        today_mala: prev.today_mala + (completed ? 1 : 0),
       };
     });
 
@@ -43,8 +43,8 @@ function Home() {
           ? prev // same object = no re-render
           : {
               ...prev,
-              todayMaala: 0,
-              todayNaamJapa: 0,
+              today_mala: 0,
+              today_naam_japa: 0,
               naam_count: 0,
               last_active_date: today,
             },

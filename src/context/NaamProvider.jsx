@@ -18,10 +18,10 @@ const loadData = () => {
     const naam = toCount(saved.naam_count, 0);
  
     return {
-      totalMaala: toCount(saved.totalMaala, 0),
-      todayMaala: toCount(saved.todayMaala, 0),
-      totalNaamJapa: toCount(saved.totalNaamJapa, 0),
-      todayNaamJapa: toCount(saved.todayNaamJapa, 0),
+      total_mala: toCount(saved.total_mala, 0),
+      today_mala: toCount(saved.today_mala, 0),
+      total_naam_japa: toCount(saved.total_naam_japa, 0),
+      today_naam_japa: toCount(saved.today_naam_japa, 0),
       last_active_date:
         typeof saved.last_active_date === "string" ? saved.last_active_date : "",
       naam_count: naam < BEADS_PER_MAALA ? naam : 0,

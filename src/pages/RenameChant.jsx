@@ -28,7 +28,7 @@ function RenameChant() {
     }
 
     setData((prev) => ({ ...prev, chant_name: chant }));
-    setSuccess("Chant renamed");
+    setSuccess("Chant renamed!");
     setChant("");
     setError("");
 

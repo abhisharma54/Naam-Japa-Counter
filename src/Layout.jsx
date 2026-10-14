@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Outlet, NavLink } from "react-router-dom";
+import { Outlet, NavLink, useLocation } from "react-router-dom";
 import { Navbar } from "./components/index";
 import { navLinks } from "./constant";
 import { IoHome } from "react-icons/io5";
@@ -16,19 +16,27 @@ const icons = {
 
 function Layout() {
   const [showNavbar, setShowNavbar] = useState(false);
+  const location = useLocation();
 
   useEffect(() => {
-    const onScroll = () =>
-      setShowNavbar(
-        window.scrollY + window.innerHeight >=
-          document.documentElement.scrollHeight - 10,
-      );
+    const onScroll = () => {
+      const scrollPosition = window.scrollY + window.innerHeight;
+      const pageHeight = document.documentElement.scrollHeight;
+
+      setShowNavbar(scrollPosition >= pageHeight - 10);
+    };
+
+    // Reset scroll position when navigating to another page
+    window.scrollTo(0, 0);
 
     window.addEventListener("scroll", onScroll);
-    onScroll();
+    requestAnimationFrame(onScroll);
 
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+    };
+  }, [location.pathname]);
+
   return (
     <div className="w-full flex flex-col px-4 py-8 pb-24 gap-8 relative min-h-dvh sm:px-8 overflow-hidden">
       {/* Decorative background, hidden from screen readers and not clickable */}
@@ -65,7 +73,7 @@ function Layout() {
             return (
               <li key={key} className="min-w-0 flex-1">
                 <NavLink
-                title={label}
+                  title={label}
                   to={path}
                   className={({ isActive }) =>
                     `glassCard flex justify-center items-center p-3 ${isActive ? "bg-purple-600 text-white rounded-full" : "text-blue-900"} transition duration-75 ease-out hover:bg-purple-700 hover:text-white hover:scale-105 active:translate-y-0.5 cursor-pointer`
