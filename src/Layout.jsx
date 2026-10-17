@@ -55,7 +55,7 @@ function Layout() {
 
       <Navbar />
 
-      <main className="glassCard min-h-[80vh] py-8 px-5 flex flex-col items-center gap-10 sm:px-8">
+      <main className="glassCard min-h-[80vh] py-8 px-5 flex flex-col items-center justify-center gap-10 sm:px-8">
         <Outlet />
       </main>
       {/* Mobile bottom navigation */}

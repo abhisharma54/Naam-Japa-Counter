@@ -27,6 +27,11 @@ function RenameChant() {
       return;
     }
 
+    if (data.chant_name === chant) {
+      setError("Please enter a different chant name.");
+      return;
+    }
+
     setData((prev) => ({ ...prev, chant_name: chant }));
     setSuccess("Chant renamed!");
     setChant("");
@@ -36,16 +41,14 @@ function RenameChant() {
   };
 
   return (
-    <div className="glassCard flex flex-col gap-5 p-6 bg-blue-300 rounded-(--boxRadius) sm:w-125">
-      <div className="flex justify-between items-start gap-4">
-        <div>
-          <h1 className="text-left text-base sm:text-xl font-semibold text-blue-900">
-            Customize your chant
-          </h1>
-          <p className="mt-1 text-white text-xs text-left sm:text-sm">
-            Choose the name you chant. It appears on your counter button.
-          </p>
-        </div>
+    <div className="glassCard w-full flex flex-col gap-5 p-6 bg-blue-300 rounded-(--boxRadius) sm:w-125">
+      <div>
+        <h1 className="text-left text-base sm:text-xl font-semibold text-blue-900">
+          Customize your chant
+        </h1>
+        <p className="mt-1 text-white text-xs text-left sm:text-sm">
+          Choose the name you chant. It appears on your counter button.
+        </p>
       </div>
 
       <div className="flex flex-col gap-1 items-start">
@@ -91,20 +94,22 @@ function RenameChant() {
       </div>
 
       {/* counter button preview */}
-      {chant && <div className="glassCard flex flex-col gap-2 p-3 bg-blue-300 rounded-(--boxRadius)">
-        <p className="text-sm text-blue-900 text-center">
-          Counter button preview
-        </p>
-        <div className="flex justify-center">
-          <button
-            aria-hidden="true"
-            className="glassCard max-w-max px-4 py-2 bg-purple-600 text-lg font-semibold text-white rounded-full"
-            disabled
-          >
-            {chant}
-          </button>
+      {chant && (
+        <div className="glassCard flex flex-col gap-2 p-3 bg-blue-300 rounded-(--boxRadius)">
+          <p className="text-sm text-blue-900 text-center">
+            Counter button preview
+          </p>
+          <div className="flex justify-center">
+            <button
+              aria-hidden="true"
+              className="glassCard max-w-max px-4 py-2 bg-purple-600 text-lg font-semibold text-white rounded-full"
+              disabled
+            >
+              {chant}
+            </button>
+          </div>
         </div>
-      </div>}
+      )}
 
       <button
         onClick={handleRenameChant}

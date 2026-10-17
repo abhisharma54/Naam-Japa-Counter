@@ -14,7 +14,7 @@ function Counter() {
           <div className="inner-progress-wrapper flex justify-center items-center">
             <div className="glassCard max-w-min px-6 py-2 text-xl font-semibold text-nowrap mt-3 bg-zinc-200 rounded-full">
               <p>
-                <span className="text-blue-600">{data.naam_count}</span>/108
+                <span className="text-blue-600">{data.chant_count}</span>/108
               </p>
             </div>
           </div>
@@ -46,7 +46,7 @@ function Counter() {
             strokeLinecap="round"
             strokeDasharray={CIRCUMFERENCE}
             strokeWidth="30px"
-            strokeDashoffset={CIRCUMFERENCE - (CIRCUMFERENCE * data.naam_count) / 108}
+            strokeDashoffset={CIRCUMFERENCE - (CIRCUMFERENCE * data.chant_count) / 108}
           />
         </svg>
       </div>

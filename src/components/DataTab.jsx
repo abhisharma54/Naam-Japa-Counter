@@ -3,10 +3,10 @@ import useNaamContext from "../context/naamContext";
 import { IoIosArrowDropdown } from "react-icons/io";
 
 const STATS = [
-  { field: "total_mala", label: "Total Mala" },
-  { field: "today_mala", label: "Today's Mala" },
-  { field: "total_naam_japa", label: "Total Naam Japa" },
-  { field: "today_naam_japa", label: "Today's Naam Japa" },
+  { field: "total_mala_count", label: "Total Mala" },
+  { field: "today_mala_count", label: "Today's Mala" },
+  { field: "total_japa_count", label: "Total Japa" },
+  { field: "today_japa_count", label: "Today's Japa" },
 ];
 
 const formatNumber = (n) => n.toLocaleString("en-IN");

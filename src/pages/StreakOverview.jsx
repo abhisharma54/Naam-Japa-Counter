@@ -1,27 +1,221 @@
-import React from "react";
+import React, { useState } from "react";
+import useNaamContext from "../context/naamContext";
+import {
+  chantAchievements,
+  streakMilestones,
+  weekDayLabels,
+} from "../constant";
 import { FaFire } from "react-icons/fa";
 
+import { PiMedalFill } from "react-icons/pi";
+import { BiSolidMedal } from "react-icons/bi";
+import { RiMedalFill } from "react-icons/ri";
+import { FaMedal } from "react-icons/fa6";
+import { RiMedal2Fill } from "react-icons/ri";
+import { IoIosMedal } from "react-icons/io";
+import { GiStarMedal } from "react-icons/gi";
+import { GiMedal } from "react-icons/gi";
+import { GiMedalSkull } from "react-icons/gi";
+import { GiMedallist } from "react-icons/gi";
+
+import { CiLock } from "react-icons/ci";
+import { FaRegCircleCheck } from "react-icons/fa6";
+
+const icons = {
+  bronze: PiMedalFill,
+  silver: BiSolidMedal,
+  gold: RiMedalFill,
+  platinum: FaMedal,
+  diamond: RiMedal2Fill,
+  crown: IoIosMedal,
+  ace: GiStarMedal,
+  ace_master: GiMedal,
+  ace_dominator: GiMedalSkull,
+  conqueror: GiMedallist,
+};
+
 function StreakOverview() {
+  const { data } = useNaamContext();
+
+  const [activeType, setActiveType] = useState("japa");
+
+  const isJapa = activeType === "japa";
+
+  const currentStreak = Number(isJapa
+    ? data.japa_current_streak
+    : data.mala_current_streak);
+
+  const bestStreak = Number(isJapa ? data.japa_best_streak : data.mala_best_streak);
+
+  const dailyTarget = Number(isJapa ? data.japa_daily_target : data.mala_daily_target);
+
+  const nextMilestone = Number(isJapa ? data.japa_milestone : data.mala_milestone); 
+
+  const progress =
+    nextMilestone > 0
+      ? Math.min(100, Math.max(0, (currentStreak / nextMilestone) * 100))
+      : 0;
+
   return (
-    <div className="glassCard flex flex-col gap-5 p-6 bg-blue-300 rounded-(--boxRadius) sm:w-125">
-      <h1 className="text-xl font-semibold text-center text-blue-900">
-        Coming soon!
-      </h1>
-      <div className="flex gap-4">
-        <FaFire size={60} className="text-blue-900" />
-        <div className="flex flex-col items-start gap-2">
-          <h1 className="text-lg font-semibold text-blue-900">Streak page</h1>
-          <h3 className="text-base -mt-2 text-blue-900">
-            Build Your Daily Rhythm
-          </h3>
-          <p className="text-sm text-white text-left">
-            I'm preparing a way to track your consecutive days of chanting and
-            Mala practice. Keep your devotion going!
-          </p>
+    <>
+      <div className="glassCard flex w-full min-w-0 sm:w-125 flex-col gap-5 rounded-(--boxRadius) bg-blue-300 p-4 text-blue-900 sm:gap-6 sm:p-6">
+        <h1 className="text-xl font-semibold sm:text-2xl">Your streak</h1>
+
+        <div className="flex w-full min-w-0 items-center gap-3 sm:gap-4">
+          {["japa", "mala"].map((type) => {
+            const isActive = activeType === type;
+
+            return (
+              <button
+                key={type}
+                type="button"
+                aria-pressed={isActive}
+                onClick={() => setActiveType(type)}
+                className={`glassCard min-w-0 flex-1 rounded-full px-3 py-2 text-sm font-semibold capitalize transition duration-150 cursor-pointer hover:scale-[1.02] active:scale-100 sm:px-6 sm:text-lg ${
+                  isActive
+                    ? "bg-purple-600 text-white"
+                    : "bg-blue-200 text-blue-900 hover:bg-blue-100"
+                }`}
+              >
+                {type}
+              </button>
+            );
+          })}
+        </div>
+
+        {/* Current and best streak */}
+        <div className="flex min-w-0 flex-wrap items-center justify-between gap-4">
+          <div className="min-w-0 flex-1">
+            <div className="flex flex-wrap items-baseline gap-x-2">
+              <span className="text-4xl font-semibold sm:text-5xl">
+                {currentStreak}
+              </span>
+
+              <span className="text-base sm:text-lg">day streak</span>
+            </div>
+
+            <p className="mt-1 text-xs text-left leading-relaxed sm:text-sm">
+              A day counts after{" "}
+              <span className="text-sm font-semibold sm:text-base">
+                {dailyTarget.toLocaleString("en-IN")}
+              </span>{" "}
+              {isJapa ? "japa" : "mala"}
+            </p>
+          </div>
+
+          <div className="flex shrink-0 items-center gap-1 text-sm sm:text-base">
+            <FaFire className="shrink-0" size={20} />
+
+            <span className="font-semibold">Best:</span>
+
+            <span className="whitespace-nowrap">
+              {bestStreak} {bestStreak === 1 ? "day" : "days"}
+            </span>
+          </div>
+        </div>
+
+        {/* Weekday labels */}
+        <div className="grid grid-cols-7 gap-2 sm:gap-3">
+          {weekDayLabels.map((day, index) => (
+            <div
+              key={`${day}-${index}`}
+              className="glassCard flex h-8 w-8 items-center justify-center rounded-full bg-blue-200 text-xs font-semibold sm:h-12 sm:w-12 sm:text-sm"
+            >
+              {day}
+            </div>
+          ))}
+        </div>
+
+        {/* Next milestone progress */}
+        <div className="flex min-w-0 flex-col gap-3">
+          <div className="flex flex-wrap items-center justify-between gap-2">
+            <p className="text-sm sm:text-base">
+              Next milestone: {nextMilestone} {nextMilestone === 1 ? "day" : "days"}
+            </p>
+
+            <p className="shrink-0 text-sm font-semibold sm:text-base">
+              {currentStreak}/{nextMilestone}
+            </p>
+          </div>
+
+          {/* Progress bar */}
+          <div
+            className="glassCard h-3 w-full overflow-hidden rounded-full bg-blue-200"
+            role="progressbar"
+            aria-label={`${isJapa ? "Japa" : "Mala"} milestone progress`}
+            aria-valuemin={0}
+            aria-valuemax={100}
+            aria-valuenow={Math.round(progress)}
+          >
+            <div
+              className="glassCard h-full rounded-full bg-purple-600 transition-[width] duration-300 ease-out"
+              style={{ width: `${progress}%` }}
+            />
+          </div>
+        </div>
+
+        {/* Streak milestones */}
+        <div className="flex flex-wrap items-center gap-2">
+          {streakMilestones.map((day) => {
+            const isAchieved = Number(currentStreak) >= Number(day);
+
+            return (
+              <div
+                key={day}
+                className={`glassCard flex items-center gap-1.5 rounded-full px-3 py-2 text-xs sm:text-sm ${
+                  isAchieved
+                    ? "bg-purple-600 text-white"
+                    : "bg-blue-200 text-blue-900"
+                }`}
+              >
+                {isAchieved ? (
+                  <FaRegCircleCheck size={14} />
+                ) : (
+                  <CiLock size={14} />
+                )}
+
+                <span>{day}</span>
+                <span>days</span>
+              </div>
+            );
+          })}
         </div>
       </div>
-    </div>
+
+      {/* Chant achievements */}
+      <div className="glassCard flex w-full min-w-0 flex-col gap-6 p-6 bg-blue-300 rounded-(--boxRadius) sm:w-125">
+        <div className="flex flex-col gap-6">
+          <h3 className="text-xl font-semibold text-blue-900 sm:text-2xl">
+            Chant Achievements
+          </h3>
+          <div className="grid grid-cols-2 gap-3 text-blue-900 sm:grid-cols-3">
+            {chantAchievements.map(
+              ({ name, level, requiredChantCount, iconKey }, i) => {
+                const Icon = icons[iconKey];
+                const isLast = i === chantAchievements.length - 1;
+                const isAchieved = Number(data.chant_count) >= Number(requiredChantCount);
+
+                return (
+                  <div
+                    key={level}
+                    className={`glassCard p-4 flex flex-col items-center justify-between gap-2 ${isAchieved ? "bg-purple-600 text-white" : "bg-blue-200 text-blue-900"} ${isLast ? "col-span-1 sm:col-span-3" : ""} rounded-md`}
+                  >
+                    <div className="flex flex-col items-center gap-2">
+                      <Icon size={40} />
+                      <span className="text-lg font-semibold text-white leading-none">
+                        {name}
+                      </span>
+                    </div>
+                    <span>{requiredChantCount.toLocaleString("en-IN")}</span>
+                  </div>
+                );
+              },
+            )}
+          </div>
+        </div>
+      </div>
+    </>
   );
 }
 
-export default StreakOverview;
+export default React.memo(StreakOverview);
