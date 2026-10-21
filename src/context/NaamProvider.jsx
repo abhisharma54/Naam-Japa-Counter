@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { NaamContext } from "./naamContext";
-import { STORAGE_KEY, DEFAULT_DATA, BEADS_PER_MALA } from "../constant";
+import { STORAGE_KEY, DEFAULT_DATA, BEADS_PER_MALA } from "../constants/data";
 import { applyRollover } from "../utils/streak";
 import { getLocalDate } from "../utils/date";
 

@@ -1,38 +1,8 @@
 import React, { useState } from "react";
 import useNaamContext from "../context/naamContext";
-import {
-  chantAchievements,
-  streakMilestones,
-  weekDayLabels,
-} from "../constant";
-import { FaFire } from "react-icons/fa";
-
-import { PiMedalFill } from "react-icons/pi";
-import { BiSolidMedal } from "react-icons/bi";
-import { RiMedalFill } from "react-icons/ri";
-import { FaMedal } from "react-icons/fa6";
-import { RiMedal2Fill } from "react-icons/ri";
-import { IoIosMedal } from "react-icons/io";
-import { GiStarMedal } from "react-icons/gi";
-import { GiMedal } from "react-icons/gi";
-import { GiMedalSkull } from "react-icons/gi";
-import { GiMedallist } from "react-icons/gi";
-
-import { CiLock } from "react-icons/ci";
-import { FaRegCircleCheck } from "react-icons/fa6";
-
-const icons = {
-  bronze: PiMedalFill,
-  silver: BiSolidMedal,
-  gold: RiMedalFill,
-  platinum: FaMedal,
-  diamond: RiMedal2Fill,
-  crown: IoIosMedal,
-  ace: GiStarMedal,
-  ace_master: GiMedal,
-  ace_dominator: GiMedalSkull,
-  conqueror: GiMedallist,
-};
+import { streakMilestones, weekDayLabels } from "../constants/data";
+import { chantAchievements } from "../constants/achievements";
+import { FaFire, FaRegCircleCheck, CiLock, icons } from "../constants/icons";
 
 function StreakOverview() {
   const { data } = useNaamContext();
@@ -41,15 +11,21 @@ function StreakOverview() {
 
   const isJapa = activeType === "japa";
 
-  const currentStreak = Number(isJapa
-    ? data.japa_current_streak
-    : data.mala_current_streak);
+  const currentStreak = Number(
+    isJapa ? data.japa_current_streak : data.mala_current_streak,
+  );
 
-  const bestStreak = Number(isJapa ? data.japa_best_streak : data.mala_best_streak);
+  const bestStreak = Number(
+    isJapa ? data.japa_best_streak : data.mala_best_streak,
+  );
 
-  const dailyTarget = Number(isJapa ? data.japa_daily_target : data.mala_daily_target);
+  const dailyTarget = Number(
+    isJapa ? data.japa_daily_target : data.mala_daily_target,
+  );
 
-  const nextMilestone = Number(isJapa ? data.japa_milestone : data.mala_milestone); 
+  const nextMilestone = Number(
+    isJapa ? data.japa_milestone : data.mala_milestone,
+  );
 
   const progress =
     nextMilestone > 0
@@ -116,21 +92,26 @@ function StreakOverview() {
 
         {/* Weekday labels */}
         <div className="grid grid-cols-7 gap-2 sm:gap-3">
-          {weekDayLabels.map((day, index) => (
-            <div
-              key={`${day}-${index}`}
-              className="glassCard flex h-8 w-8 items-center justify-center rounded-full bg-blue-200 text-xs font-semibold sm:h-12 sm:w-12 sm:text-sm"
-            >
-              {day}
-            </div>
-          ))}
+          {weekDayLabels.map((day, index) => {
+            const isToday = new Date().getDay() === index;
+
+            return (
+              <div
+                key={`${day}-${index}`}
+                className={`glassCard flex h-8 w-8 items-center justify-center rounded-full ${isToday ? "bg-purple-600 text-white" : "bg-blue-200"} text-xs font-semibold sm:h-12 sm:w-12 sm:text-sm`}
+              >
+                {day}
+              </div>
+            );
+          })}
         </div>
 
         {/* Next milestone progress */}
         <div className="flex min-w-0 flex-col gap-3">
           <div className="flex flex-wrap items-center justify-between gap-2">
             <p className="text-sm sm:text-base">
-              Next milestone: {nextMilestone} {nextMilestone === 1 ? "day" : "days"}
+              Next milestone: {nextMilestone}{" "}
+              {nextMilestone === 1 ? "day" : "days"}
             </p>
 
             <p className="shrink-0 text-sm font-semibold sm:text-base">
@@ -163,9 +144,7 @@ function StreakOverview() {
               <div
                 key={day}
                 className={`glassCard flex items-center gap-1.5 rounded-full px-3 py-2 text-xs sm:text-sm ${
-                  isAchieved
-                    ? "bg-purple-600 text-white"
-                    : "bg-blue-200 text-blue-900"
+                  isAchieved ? "bg-purple-600 text-white" : "bg-blue-200"
                 }`}
               >
                 {isAchieved ? (
@@ -193,7 +172,8 @@ function StreakOverview() {
               ({ name, level, requiredChantCount, iconKey }, i) => {
                 const Icon = icons[iconKey];
                 const isLast = i === chantAchievements.length - 1;
-                const isAchieved = Number(data.chant_count) >= Number(requiredChantCount);
+                const isAchieved =
+                  Number(data.today_japa_count) >= Number(requiredChantCount);
 
                 return (
                   <div

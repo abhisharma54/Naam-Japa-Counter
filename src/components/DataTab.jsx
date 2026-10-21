@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import useNaamContext from "../context/naamContext";
-import { IoIosArrowDropdown } from "react-icons/io";
+import { icons } from "../constants/icons";
+
+const Icon = icons['drop_arrow'];
 
 const STATS = [
   { field: "total_mala_count", label: "Total Mala" },
@@ -8,6 +10,7 @@ const STATS = [
   { field: "total_japa_count", label: "Total Japa" },
   { field: "today_japa_count", label: "Today's Japa" },
 ];
+
 
 const formatNumber = (n) => n.toLocaleString("en-IN");
 
@@ -36,7 +39,7 @@ function DataTab() {
           onClick={() => setIsOpen((open) => !open)}
           aria-expanded={isOpen}
         >
-          <IoIosArrowDropdown
+          <Icon
             className={`text-3xl text-blue-900 transition duration-100 ease-in hover:scale-105 cursor-pointer ${
               isOpen ? "rotate-0" : "-rotate-180"
             }`}

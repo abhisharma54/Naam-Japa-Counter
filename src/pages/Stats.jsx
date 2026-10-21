@@ -1,5 +1,7 @@
 import React from "react";
-import { IoBarChart } from "react-icons/io5";
+import { icons } from "../constants/icons";
+
+const Icon = icons['chart'];
 
 function Stats() {
   return (
@@ -8,7 +10,7 @@ function Stats() {
         Coming soon!
       </h1>
       <div className="flex gap-4">
-        <IoBarChart size={60} className="text-blue-900" />
+        <Icon size={60} className="text-blue-900" />
         <div className="flex flex-col items-start gap-2">
           <h1 className="text-lg font-semibold text-blue-900">Stats page</h1>
           <h3 className="text-base -mt-2 text-blue-900">

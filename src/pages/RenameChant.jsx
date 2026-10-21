@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import useNaamContext from "../context/naamContext";
-import { DEFAULT_DATA, MAX_CHANT_LENGTH, chantQuickPicks } from "../constant";
+import { DEFAULT_DATA, MAX_CHANT_LENGTH, chantQuickPicks } from "../constants/data";
 
 function RenameChant() {
   const { data, setData } = useNaamContext();

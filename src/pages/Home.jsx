@@ -1,8 +1,8 @@
-import React, { useCallback, useEffect } from "react";
+import React, { useCallback } from "react";
 import { Counter, DataTab, MantraCard } from "../components/index";
 import useNaamContext from "../context/naamContext";
-import { BEADS_PER_MALA, STORAGE_KEY, DEFAULT_DATA } from "../constant";
-import { applyRollover, creditStreakIfReached } from "../utils/streak";
+import { BEADS_PER_MALA, DEFAULT_DATA } from "../constants/data";
+import { applyRollover, updateStreakOnTargetReached } from "../utils/streak";
 import { getLocalDate } from "../utils/date";
 
 function Home() {
@@ -26,7 +26,7 @@ function Home() {
         today_japa_count: prev.today_japa_count + 1,
       };
 
-      return creditStreakIfReached(prev, next);
+      return updateStreakOnTargetReached(prev, next);
     });
   }, [setData, data.chant_count]);
 

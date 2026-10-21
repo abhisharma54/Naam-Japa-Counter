@@ -1,6 +1,7 @@
 import { daysBetween } from "./date";
 
-const rollStreak = (prefix, data, gap) => {
+// Checks whether the current streak should continue or reset based on the missed days and daily target
+const validateStreak = (prefix, data, gap) => {
   const metTarget =
     data[`today_${prefix}_count`] >= data[`${prefix}_daily_target`];
   let current = data[`${prefix}_current_streak`];
@@ -16,6 +17,8 @@ const rollStreak = (prefix, data, gap) => {
   };
 };
 
+// Handles the transition to a new day by saving the previous day's activity,
+// validating streaks, resetting daily counters, and updating the last active date.
 export const applyRollover = (prevData, today) => {
   // first ever launch
   if (!prevData.last_active_date) {
@@ -35,8 +38,8 @@ export const applyRollover = (prevData, today) => {
 
   return {
     ...prevData,
-    ...rollStreak("japa", prevData, gap),
-    ...rollStreak("mala", prevData, gap),
+    ...validateStreak("japa", prevData, gap),
+    ...validateStreak("mala", prevData, gap),
     daily_activity,
     today_japa_count: 0,
     today_mala_count: 0,
@@ -45,7 +48,9 @@ export const applyRollover = (prevData, today) => {
   };
 };
 
-export const creditStreakIfReached = (prevData, currData) => {
+// Increases the current streak when the daily target is reached for the first time
+// and updates the best streak if a new record is achieved.
+export const updateStreakOnTargetReached = (prevData, currData) => {
   const next = { ...currData };
 
   for (const p of ["japa", "mala"]) {
