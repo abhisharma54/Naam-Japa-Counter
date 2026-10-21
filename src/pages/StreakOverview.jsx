@@ -3,6 +3,7 @@ import useNaamContext from "../context/naamContext";
 import { streakMilestones, weekDayLabels } from "../constants/data";
 import { chantAchievements } from "../constants/achievements";
 import { FaFire, FaRegCircleCheck, CiLock, icons } from "../constants/icons";
+import ActivityTabs from "../components/ActivityTabs";
 
 function StreakOverview() {
   const { data } = useNaamContext();
@@ -37,27 +38,7 @@ function StreakOverview() {
       <div className="glassCard flex w-full min-w-0 sm:w-125 flex-col gap-5 rounded-(--boxRadius) bg-blue-300 p-4 text-blue-900 sm:gap-6 sm:p-6">
         <h1 className="text-xl font-semibold sm:text-2xl">Your streak</h1>
 
-        <div className="flex w-full min-w-0 items-center gap-3 sm:gap-4">
-          {["japa", "mala"].map((type) => {
-            const isActive = activeType === type;
-
-            return (
-              <button
-                key={type}
-                type="button"
-                aria-pressed={isActive}
-                onClick={() => setActiveType(type)}
-                className={`glassCard min-w-0 flex-1 rounded-full px-3 py-2 text-sm font-semibold capitalize transition duration-150 cursor-pointer hover:scale-[1.02] active:scale-100 sm:px-6 sm:text-lg ${
-                  isActive
-                    ? "bg-purple-600 text-white"
-                    : "bg-blue-200 text-blue-900 hover:bg-blue-100"
-                }`}
-              >
-                {type}
-              </button>
-            );
-          })}
-        </div>
+        <ActivityTabs activeType={activeType} onActiveType={setActiveType} />
 
         {/* Current and best streak */}
         <div className="flex min-w-0 flex-wrap items-center justify-between gap-4">
