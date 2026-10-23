@@ -67,7 +67,7 @@ function Stats() {
 
   return (
     <>
-      <div className="glassCard flex w-full min-w-0 min-h-100 flex-col gap-5 rounded-(--boxRadius) p-4 sm:w-125 sm:gap-6 sm:p-6">
+      <div className="glass-card flex w-full min-w-0 min-h-100 flex-col gap-5 rounded-xl p-4 sm:w-125 sm:gap-6 sm:p-6">
         <h1 className="text-xl font-semibold sm:text-2xl">Your stats</h1>
 
         <ActivityTabs activeType={activeType} onActiveType={setActiveType} />

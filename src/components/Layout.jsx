@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Outlet, useLocation } from "react-router-dom";
-import { Navbar } from "./components/index";
+import { Navbar } from "./index";
 
 function Layout() {
   const [showNavbar, setShowNavbar] = useState(false);
@@ -33,17 +33,17 @@ function Layout() {
         aria-hidden="true"
       />
       <div
-        className="mesh-gradientBox1 pointer-events-none"
+        className="mesh-gradient-box-1 pointer-events-none"
         aria-hidden="true"
       />
       <div
-        className="mesh-gradientBox2 pointer-events-none"
+        className="mesh-gradient-box=2 pointer-events-none"
         aria-hidden="true"
       />
 
       <Navbar showMobileNavbar={showNavbar} />
 
-      <main className="glassCard min-h-[80vh] py-8 px-5 flex flex-col items-center justify-center gap-10 sm:px-8">
+      <main className="glass-card min-h-[80vh] py-8 px-5 flex flex-col items-center justify-center gap-10 sm:px-8">
         <Outlet />
       </main>
     </div>

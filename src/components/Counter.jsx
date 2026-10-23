@@ -12,7 +12,7 @@ function Counter() {
       <div className="progress-wrapper relative ">
         <div className="outer-progress-wrapper">
           <div className="inner-progress-wrapper flex justify-center items-center">
-            <div className="glassCard max-w-min px-6 py-2 text-xl font-semibold text-nowrap mt-3 bg-zinc-200 rounded-full">
+            <div className="glass-card max-w-min px-6 py-2 text-xl font-semibold text-nowrap mt-3 bg-blue-200 rounded-full">
               <p>
                 <span className="text-blue-600">{data.chant_count}</span>/108
               </p>

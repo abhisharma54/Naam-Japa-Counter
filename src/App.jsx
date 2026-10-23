@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Home, RenameChant, Stats, StreakOverview } from './pages/index';
-import Layout from "./Layout";
+import { Layout } from "./components/index";
 
 function App() {
   return (

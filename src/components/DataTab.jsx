@@ -23,14 +23,14 @@ function DataTab() {
   return (
     <section
       aria-label="Japa statistics"
-      className={`glassCard w-full relative ${
+      className={`glass-card w-full relative ${
         isOpen && "h-30 border-b-zinc-300 overflow-hidden"
       } pt-4 pb-8 px-4 sm:px-6 bg-blue-300 sm:w-125`}
     >
       <div className="flex justify-between pb-4">
         <time
           dateTime={data.last_active_date}
-          className="glassCard dateTab inline-flex items-center px-5 py-1 text-sm tracking-wider bg-blue-600 text-white rounded-lg"
+          className="glass-card inline-flex items-center px-5 py-1 text-sm tracking-wider bg-blue-600 text-white rounded-lg"
         >
           {formatDate(data.last_active_date)}
         </time>
@@ -40,7 +40,7 @@ function DataTab() {
           aria-expanded={isOpen}
         >
           <Icon
-            className={`text-3xl text-blue-900 transition duration-100 ease-in hover:scale-105 cursor-pointer ${
+            className={`text-3xl text-blue-900 transition duration-fast ease-standard hover:scale-105 cursor-pointer ${
               isOpen ? "rotate-0" : "-rotate-180"
             }`}
           />
@@ -50,7 +50,7 @@ function DataTab() {
         {STATS.map(({ field, label }) => (
           <div
             key={field}
-            className="glassCard min-h-20 flex flex-col px-6 py-2.5 bg-blue-300 rounded-(--boxRadius) items-center justify-between"
+            className="glass-card min-h-20 flex flex-col px-6 py-2.5 bg-blue-300 rounded-xl items-center justify-between"
           >
             <p className="text-lg text-nowrap text-blue-900 font-semibold">
                 {label}

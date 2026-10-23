@@ -33,7 +33,7 @@ function StreakOverview() {
       : 0;
 
   return (
-    <div className="glassCard flex w-full min-w-0 sm:w-125 flex-col gap-5 rounded-(--boxRadius) bg-blue-300 p-4 text-blue-900 sm:gap-6 sm:p-6">
+    <div className="glass-card flex w-full min-w-0 sm:w-125 flex-col gap-5 rounded-xl bg-blue-300 p-4 text-blue-900 sm:gap-6 sm:p-6">
       <h1 className="text-xl font-semibold sm:text-2xl">Your streak</h1>
 
       <ActivityTabs activeType={activeType} onActiveType={setActiveType} />
@@ -77,7 +77,7 @@ function StreakOverview() {
           return (
             <div
               key={`${day}-${index}`}
-              className={`glassCard flex h-8 w-8 items-center justify-center rounded-full ${isToday ? "bg-purple-600 text-white" : "bg-blue-200"} text-xs font-semibold sm:h-12 sm:w-12 sm:text-sm`}
+              className={`glass-card flex h-8 w-8 items-center justify-center rounded-full ${isToday ? "bg-purple-600 text-white" : "bg-blue-200"} text-xs font-semibold sm:h-12 sm:w-12 sm:text-sm`}
             >
               {day}
             </div>
@@ -100,7 +100,7 @@ function StreakOverview() {
 
         {/* Progress bar */}
         <div
-          className="glassCard h-3 w-full overflow-hidden rounded-full bg-blue-200"
+          className="glass-card h-3 w-full overflow-hidden rounded-full bg-blue-200"
           role="progressbar"
           aria-label={`${isJapa ? "Japa" : "Mala"} milestone progress`}
           aria-valuemin={0}
@@ -108,7 +108,7 @@ function StreakOverview() {
           aria-valuenow={Math.round(progress)}
         >
           <div
-            className="glassCard h-full rounded-full bg-purple-600 transition-[width] duration-300 ease-out"
+            className="glass-card h-full rounded-full bg-purple-600 transition-[width] duration-300 ease-out"
             style={{ width: `${progress}%` }}
           />
         </div>
@@ -122,7 +122,7 @@ function StreakOverview() {
           return (
             <div
               key={day}
-              className={`glassCard flex items-center gap-1.5 rounded-full px-3 py-2 text-xs sm:text-sm ${
+              className={`glass-card flex items-center gap-1.5 rounded-full px-3 py-2 text-xs sm:text-sm ${
                 isAchieved ? "bg-purple-600 text-white" : "bg-blue-200"
               }`}
             >

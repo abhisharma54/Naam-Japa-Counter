@@ -45,7 +45,7 @@ const NavItems = ({ mobile = false }) => {
               title={label}
               aria-label={label}
               className={({ isActive }) =>
-                `glassCard flex items-center justify-center text-white transition duration-150 ease-out hover:bg-purple-700 hover:text-white hover:scale-105 active:translate-y-0.5 ${
+                `glass-card flex items-center justify-center text-white transition duration-150 ease-out hover:bg-purple-700 hover:text-white hover:scale-105 active:translate-y-0.5 ${
                   isActive
                     ? "bg-purple-600"
                     : undefined
@@ -74,7 +74,7 @@ function Navbar({ showMobileNavbar = false }) {
   return (
     <>
       {/* Desktop Navbar */}
-      <header className="glassCard relative w-full py-5 flex justify-center items-center fjalla-one-regular">
+      <header className="glass-card relative w-full py-5 flex justify-center items-center fjalla-one-regular">
         <div className="flex flex-col items-center gap-5">
           <p className="text-xl text-nowrap sm:text-[1.6rem] logo">
             Naam Japa Counter
@@ -89,7 +89,7 @@ function Navbar({ showMobileNavbar = false }) {
       <nav
         aria-label="Mobile navigation"
         aria-hidden={!showMobileNavbar}
-        className={`fixed bottom-5 left-1/2 -translate-x-1/2 z-50 w-[calc(100%-2rem)] glassCard max-w-lg px-2 py-3 transition-all duration-500 ease-in-out sm:hidden ${
+        className={`fixed bottom-5 left-1/2 -translate-x-1/2 z-50 w-[calc(100%-2rem)] glass-card max-w-lg px-2 py-3 transition-all duration-500 ease-in-out sm:hidden ${
           showMobileNavbar
             ? "translate-y-0 opacity-100"
             : "translate-y-[150%] opacity-0 pointer-events-none"

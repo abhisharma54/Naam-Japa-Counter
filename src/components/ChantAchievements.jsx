@@ -7,7 +7,7 @@ function ChantAchievements() {
   const { data } = useNaamContext();
 
   return (
-    <div className="glassCard flex w-full min-w-0 flex-col gap-6 p-6 bg-blue-300 rounded-(--boxRadius) sm:w-125">
+    <div className="glass-card flex w-full min-w-0 flex-col gap-6 p-6 bg-blue-300 rounded-(--border) sm:w-125">
       <div className="flex flex-col gap-6">
         <h3 className="text-xl font-semibold text-blue-900 sm:text-2xl">
           Chant Achievements
@@ -23,7 +23,7 @@ function ChantAchievements() {
               return (
                 <div
                   key={level}
-                  className={`glassCard p-4 flex flex-col items-center justify-between gap-2 ${isAchieved ? "bg-purple-600 text-white" : "bg-blue-200 text-blue-900"} ${isLast ? "col-span-1 sm:col-span-3" : ""} rounded-md`}
+                  className={`glass-card p-4 flex flex-col items-center justify-between gap-2 ${isAchieved ? "bg-purple-600 text-white" : "bg-blue-200 text-blue-900"} ${isLast ? "col-span-1 sm:col-span-3" : ""} rounded-md`}
                 >
                   <div className="flex flex-col items-center gap-2">
                     <Icon size={40} />

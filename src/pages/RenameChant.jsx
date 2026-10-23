@@ -41,7 +41,7 @@ function RenameChant() {
   };
 
   return (
-    <div className="glassCard w-full flex flex-col gap-5 p-6 bg-blue-300 rounded-(--boxRadius) sm:w-125">
+    <div className="glass-card w-full flex flex-col gap-5 p-6 bg-blue-300 rounded-xl sm:w-125">
       <div>
         <h1 className="text-left text-base sm:text-xl font-semibold text-blue-900">
           Customize your chant
@@ -53,7 +53,7 @@ function RenameChant() {
 
       <div className="flex flex-col gap-1 items-start">
         <p className="text-blue-900 font-semibold">Current Chant</p>
-        <p className="glassCard px-5 py-2 text-sm tracking-wider bg-blue-500 text-white rounded-lg">
+        <p className="glass-card px-5 py-2 text-sm tracking-wider bg-blue-500 text-white rounded-lg">
           {data.chant_name || DEFAULT_DATA.chant_name}
         </p>
       </div>
@@ -66,7 +66,7 @@ function RenameChant() {
             <button
               key={i}
               onClick={() => setChant(chant)}
-              className="glassCard px-5 py-1 bg-blue-300 rounded-(--boxRadius) text-blue-900 font-medium text-sm cursor-pointer hover:scale-105 active:scale-100"
+              className="glass-card px-5 py-1 bg-blue-300 rounded-xl text-blue-900 font-medium text-sm cursor-pointer hover:scale-105 active:scale-100"
             >
               {chant}
             </button>
@@ -95,14 +95,14 @@ function RenameChant() {
 
       {/* counter button preview */}
       {chant && (
-        <div className="glassCard flex flex-col gap-2 p-3 bg-blue-300 rounded-(--boxRadius)">
+        <div className="glass-card flex flex-col gap-2 p-3 bg-blue-300 rounded-xl">
           <p className="text-sm text-blue-900 text-center">
             Counter button preview
           </p>
           <div className="flex justify-center">
             <button
               aria-hidden="true"
-              className="glassCard max-w-max px-4 py-2 bg-purple-600 text-lg font-semibold text-white rounded-full"
+              className="glass-card max-w-max px-4 py-2 bg-purple-600 text-lg font-semibold text-white rounded-full"
               disabled
             >
               {chant}
@@ -113,12 +113,12 @@ function RenameChant() {
 
       <button
         onClick={handleRenameChant}
-        className="glassCard px-5 py-2 bg-purple-600 font-semibold text-white rounded-full transition duration-75 ease-out hover:scale-105 active:translate-y-0.5 cursor-pointer"
+        className="glass-card px-5 py-2 bg-purple-600 font-semibold text-white rounded-full transition duration-75 ease-out hover:scale-105 active:translate-y-0.5 cursor-pointer"
       >
         Rename chant
       </button>
       {success && (
-        <p className="glassCard px-5 py-2 text-sm tracking-wider bg-blue-500 text-white rounded-lg">
+        <p className="glass-card px-5 py-2 text-sm tracking-wider bg-blue-500 text-white rounded-lg">
           {success}
         </p>
       )}
