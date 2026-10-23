@@ -1,7 +1,14 @@
-import React, { useMemo, useEffect, useRef, useState, useLayoutEffect } from "react";
+import React, {
+  useMemo,
+  useEffect,
+  useRef,
+  useState,
+  useLayoutEffect,
+} from "react";
 import useNaamContext from "../context/naamContext";
 import { CHART_HEIGHT_PX, MIN_BAR_HEIGHT_PX } from "../constants/stats";
 import ActivityTabs from "../components/ActivityTabs";
+import { ChantAchievements } from "../components/index";
 
 const formatLabel = (date) =>
   new Date(`${date}T00:00:00`).toLocaleDateString("en-IN", {
@@ -59,65 +66,72 @@ function Stats() {
   }, [statsData.length]);
 
   return (
-    <div className="glassCard flex w-full min-w-0 min-h-100 flex-col gap-5 rounded-(--boxRadius) p-4 sm:w-125 sm:gap-6 sm:p-6">
-      <h1 className="text-xl font-semibold sm:text-2xl">Your stats</h1>
+    <>
+      <div className="glassCard flex w-full min-w-0 min-h-100 flex-col gap-5 rounded-(--boxRadius) p-4 sm:w-125 sm:gap-6 sm:p-6">
+        <h1 className="text-xl font-semibold sm:text-2xl">Your stats</h1>
 
-      <ActivityTabs activeType={activeType} onActiveType={setActiveType} />
+        <ActivityTabs activeType={activeType} onActiveType={setActiveType} />
 
-      {!hasData ? (
-        <p className="text-center text-sm">
-          No {activeType} activity available yet.
-        </p>
-      ) : (
-        <>
-          <div
-            ref={scrollRef}
-            className="w-full min-w-0 overflow-x-auto overflow-y-hidden pb-3 touch-pan-x"
-            style={{ WebkitOverflowScrolling: "touch" }}
-          >
-            <div className="flex w-max min-w-full gap-4 rounded-md px-3 py-2">
-              {statsData.map(({ key, label, value }) => {
-                const barHeight =
-                  value > 0
-                    ? Math.max((value / maxValue) * CHART_HEIGHT_PX, MIN_BAR_HEIGHT_PX)
-                    : 0;
+        {!hasData ? (
+          <p className="text-center text-sm">
+            No {activeType} activity available yet.
+          </p>
+        ) : (
+          <>
+            <div
+              ref={scrollRef}
+              className="w-full min-w-0 overflow-x-auto overflow-y-hidden pb-3 touch-pan-x"
+              style={{ WebkitOverflowScrolling: "touch" }}
+            >
+              <div className="flex w-max min-w-full gap-4 rounded-md px-3 py-2">
+                {statsData.map(({ key, label, value }) => {
+                  const barHeight =
+                    value > 0
+                      ? Math.max(
+                          (value / maxValue) * CHART_HEIGHT_PX,
+                          MIN_BAR_HEIGHT_PX,
+                        )
+                      : 0;
 
-                return (
-                  <div
-                    key={key}
-                    className="flex w-12 shrink-0 flex-col items-center gap-2"
-                  >
-                    <span className="text-xs font-medium">
-                      {value.toLocaleString("en-IN")}
-                    </span>
-
-                    {/* fixed height keeps every date label on the same line */}
+                  return (
                     <div
-                      className="flex w-10 items-end justify-center"
-                      style={{ height: `${CHART_HEIGHT_PX}px` }}
+                      key={key}
+                      className="flex w-12 shrink-0 flex-col items-center gap-2"
                     >
+                      <span className="text-xs font-medium">
+                        {value.toLocaleString("en-IN")}
+                      </span>
+
+                      {/* fixed height keeps every date label on the same line */}
                       <div
-                        className="w-full rounded-t-md bg-purple-600 transition-all duration-300"
-                        style={{ height: `${barHeight}px` }}
-                        title={`${key}: ${value.toLocaleString("en-IN")} ${activeType}`}
-                      />
+                        className="flex w-10 items-end justify-center"
+                        style={{ height: `${CHART_HEIGHT_PX}px` }}
+                      >
+                        <div
+                          className="w-full rounded-t-md bg-purple-600 transition-all duration-300"
+                          style={{ height: `${barHeight}px` }}
+                          title={`${key}: ${value.toLocaleString("en-IN")} ${activeType}`}
+                        />
+                      </div>
+
+                      <span className="whitespace-nowrap text-xs">{label}</span>
                     </div>
-
-                    <span className="whitespace-nowrap text-xs">{label}</span>
-                  </div>
-                );
-              })}
+                  );
+                })}
+              </div>
             </div>
-          </div>
 
-          {isScrollable && (
-            <p className="-mt-2 text-center text-xs opacity-80">
-              ← Swipe or scroll left to see your previous {activeType} history
-            </p>
-          )}
-        </>
-      )}
-    </div>
+            {isScrollable && (
+              <p className="-mt-2 text-center text-xs opacity-80">
+                ← Swipe or scroll left to see your previous {activeType} history
+              </p>
+            )}
+          </>
+        )}
+      </div>
+
+      <ChantAchievements />
+    </>
   );
 }
 
