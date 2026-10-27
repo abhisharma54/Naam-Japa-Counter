@@ -67,7 +67,7 @@ function Stats() {
 
   return (
     <>
-      <div className="glass-card flex w-full min-w-0 min-h-100 flex-col gap-5 rounded-xl p-4 sm:w-125 sm:gap-6 sm:p-6">
+      <div className="glass-card flex w-full min-w-0 min-h-100 bg-blue-300 text-blue-900 flex-col gap-5 rounded-xl p-4 sm:w-125 sm:gap-6 sm:p-6">
         <h1 className="text-xl font-semibold sm:text-2xl">Your stats</h1>
 
         <ActivityTabs activeType={activeType} onActiveType={setActiveType} />
@@ -83,7 +83,7 @@ function Stats() {
               className="w-full min-w-0 overflow-x-auto overflow-y-hidden pb-3 touch-pan-x z-0"
               style={{ WebkitOverflowScrolling: "touch" }}
             >
-              <div className="flex w-max min-w-full text-white gap-4 rounded-md px-3 py-2">
+              <div className="flex w-max min-w-full gap-4 rounded-md px-3 py-2">
                 {statsData.map(({ key, label, value }) => {
                   const barHeight =
                     value > 0
