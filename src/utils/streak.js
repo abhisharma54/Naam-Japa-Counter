@@ -4,29 +4,29 @@ import { daysBetween } from "./date";
 const validateStreak = (prefix, data, gap) => {
   const metTarget =
     data[`today_${prefix}_count`] >= data[`${prefix}_daily_target`];
-  let current = data[`${prefix}_current_streak`];
+  let currentStreak = data[`${prefix}_current_streak`];
 
   if (gap > 1) {
-    current = 0; // missed at least one full day
+    currentStreak = 0; // missed at least one full day
   } else if (!metTarget) {
-    current = 0; // yesterday ended below target
+    currentStreak = 0; // yesterday ended below target
   }
 
   return {
-    [`${prefix}_current_streak`]: current,
+    [`${prefix}_current_streak`]: currentStreak,
   };
 };
 
 // Handles the transition to a new day by saving the previous day's activity,
 // validating streaks, resetting daily counters, and updating the last active date.
-export const applyRollover = (prevData, today) => {
+export const applyRollover = (prevData, todayDate) => {
   // first ever launch
   if (!prevData.last_active_date) {
-    return { ...prevData, last_active_date: today };
+    return { ...prevData, last_active_date: todayDate };
   }
 
-  const gap = daysBetween(prevData.last_active_date, today);
-  if (gap <= 0) return prevData;
+  const gap = daysBetween(prevData.last_active_date, todayDate);
+  if (gap <= 0) return prevData; // it's the same day, so no rollover is needed
 
   const daily_activity = {
     ...prevData.daily_activity,
@@ -44,7 +44,7 @@ export const applyRollover = (prevData, today) => {
     today_japa_count: 0,
     today_mala_count: 0,
     chant_count: 0,
-    last_active_date: today,
+    last_active_date: todayDate,
   };
 };
 
@@ -55,10 +55,10 @@ export const updateStreakOnTargetReached = (prevData, currData) => {
 
   for (const p of ["japa", "mala"]) {
     const target = prevData[`${p}_daily_target`];
-    const prev = prevData[`today_${p}_count`];
-    const curr = currData[`today_${p}_count`];
+    const prevCount = prevData[`today_${p}_count`];
+    const currCount = currData[`today_${p}_count`];
 
-    if (target > 0 && prev < target && curr >= target) {
+    if (target > 0 && prevCount < target && currCount >= target) {
       const streak = prevData[`${p}_current_streak`] + 1;
       next[`${p}_current_streak`] = streak;
       next[`${p}_best_streak`] = Math.max(prevData[`${p}_best_streak`], streak);

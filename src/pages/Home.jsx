@@ -17,18 +17,25 @@ function Home() {
       const prev = applyRollover(current, getLocalDate());
 
       const completed = prev.chant_count + 1 >= BEADS_PER_MALA;
+      const todayJapa = prev.today_japa_count + 1;
+      const todayMala = prev.today_mala_count + (completed ? 1 : 0);
+
       const next = {
         ...prev,
         chant_count: completed ? 0 : prev.chant_count + 1,
         total_mala_count: prev.total_mala_count + (completed ? 1 : 0),
-        today_mala_count: prev.today_mala_count + (completed ? 1 : 0),
+        today_mala_count: todayMala,
         total_japa_count: prev.total_japa_count + 1,
-        today_japa_count: prev.today_japa_count + 1,
+        today_japa_count: todayJapa,
+        highest_japa: Math.max(prev.highest_japa, todayJapa),
+        highest_mala: Math.max(prev.highest_mala, todayMala)
       };
 
       return updateStreakOnTargetReached(prev, next);
     });
   }, [setData, data.chant_count]);
+
+  console.log(data)
 
   return (
     <>

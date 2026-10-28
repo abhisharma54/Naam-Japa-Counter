@@ -17,6 +17,8 @@ const COUNT_KEYS = [
   "mala_best_streak",
   "mala_daily_target",
   "mala_milestone",
+  "highest_japa",
+  "highest_mala",
 ];
 
 const toCount = (value, fallback) =>
@@ -43,7 +45,7 @@ const loadData = () => {
     }
 
     const chant = toCount(saved.chant_count, 0);
-    data.chant_count = chant < BEADS_PER_MALA ? chant : 0;
+    data.chant_count = chant < BEADS_PER_MALA ? chant : 0; 
 
     data.chant_name =
       typeof saved.chant_name === "string" && saved.chant_name.trim()

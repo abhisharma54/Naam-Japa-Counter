@@ -23,7 +23,10 @@ export const DEFAULT_DATA = {
   mala_daily_target: 10,
   mala_milestone: 7,
 
+  // stats
   daily_activity: {},
+  highest_japa: 0,
+  highest_mala: 0
 };
 
 export const MAX_CHANT_LENGTH = 30;

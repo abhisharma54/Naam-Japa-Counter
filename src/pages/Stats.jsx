@@ -70,6 +70,7 @@ function Stats() {
       <div className="glass-card flex w-full min-w-0 min-h-100 bg-blue-300 text-blue-900 flex-col gap-5 rounded-xl p-4 sm:w-125 sm:gap-6 sm:p-6">
         <h1 className="text-xl font-semibold sm:text-2xl">Your stats</h1>
 
+        <p className="glass-card max-w-max inline-flex items-center px-5 py-2 text-sm tracking-wider bg-blue-600 text-white rounded-lg">Highest {activeType}: {data[`highest_${activeType}`]}</p>
         <ActivityTabs activeType={activeType} onActiveType={setActiveType} />
 
         {!hasData ? (
